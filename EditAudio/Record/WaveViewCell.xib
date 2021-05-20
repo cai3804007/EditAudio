@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="WaveViewCell" customModule="EditAudio" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="24" height="174"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="24" height="174"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HwZ-CY-Kdz">
+                        <rect key="frame" x="0.0" y="0.0" width="24" height="174"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sjd-Qb-Thh">
+                                <rect key="frame" x="0.0" y="77" width="24" height="20"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="dnF-U5-Rtj"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Sjd-Qb-Thh" firstAttribute="centerY" secondItem="HwZ-CY-Kdz" secondAttribute="centerY" id="Fm4-ew-uNa"/>
+                            <constraint firstItem="Sjd-Qb-Thh" firstAttribute="centerX" secondItem="HwZ-CY-Kdz" secondAttribute="centerX" id="Tpv-q2-kQB"/>
+                            <constraint firstAttribute="trailing" secondItem="Sjd-Qb-Thh" secondAttribute="trailing" id="h3c-60-HL6"/>
+                            <constraint firstItem="Sjd-Qb-Thh" firstAttribute="leading" secondItem="HwZ-CY-Kdz" secondAttribute="leading" id="m0u-ix-9Qr"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="HwZ-CY-Kdz" secondAttribute="trailing" id="59Y-C5-DfN"/>
+                <constraint firstItem="HwZ-CY-Kdz" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="VeS-U6-exl"/>
+                <constraint firstAttribute="bottom" secondItem="HwZ-CY-Kdz" secondAttribute="bottom" id="bk2-hg-8ct"/>
+                <constraint firstItem="HwZ-CY-Kdz" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="fGa-bI-aJ9"/>
+            </constraints>
+            <size key="customSize" width="24" height="174"/>
+            <connections>
+                <outlet property="waveHeight" destination="dnF-U5-Rtj" id="7Uj-sn-4H7"/>
+                <outlet property="waveView" destination="Sjd-Qb-Thh" id="s3M-VP-7hV"/>
+            </connections>
+            <point key="canvasLocation" x="117.39130434782609" y="162.72321428571428"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

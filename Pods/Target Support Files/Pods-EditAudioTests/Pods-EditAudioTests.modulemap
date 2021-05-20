@@ -1,0 +1,6 @@
+framework module Pods_EditAudioTests {
+  umbrella header "Pods-EditAudioTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
