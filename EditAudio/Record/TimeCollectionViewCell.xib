@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="TimeCollectionViewCell" customModule="EditAudio" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="227" height="121"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="227" height="121"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h4o-wD-xA1">
+                        <rect key="frame" x="0.0" y="0.0" width="227" height="121"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="h4o-wD-xA1" secondAttribute="trailing" id="7Br-G0-cC2"/>
+                <constraint firstItem="h4o-wD-xA1" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="9rw-pp-WbC"/>
+                <constraint firstAttribute="bottom" secondItem="h4o-wD-xA1" secondAttribute="bottom" id="R6j-3p-wYR"/>
+                <constraint firstItem="h4o-wD-xA1" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="lFs-qD-6AV"/>
+            </constraints>
+            <size key="customSize" width="227" height="121"/>
+            <connections>
+                <outlet property="timeLabel" destination="h4o-wD-xA1" id="obN-oK-058"/>
+            </connections>
+            <point key="canvasLocation" x="265.94202898550725" y="130.24553571428572"/>
+        </collectionViewCell>
+    </objects>
+</document>

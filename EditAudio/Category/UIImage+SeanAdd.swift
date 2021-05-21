@@ -6,7 +6,7 @@
 //  Copyright © 2021 MacBook. All rights reserved.
 //
 
-import Foundation
+import UIKit
 extension UIImage {
     class func courseDefault() -> UIImage! {
         return UIImage(named: "course_img_placeholder")
@@ -34,11 +34,4 @@ extension UIImage {
 }
 
 
-extension UIImageView{
-    func sd_setImage(url:String,_ placeholderImage : UIImage = UIImage.courseDefault()){
-        
-        guard let imageURL = URL(string: url) else { return  }
-        self.sd_setImage(with: imageURL, placeholderImage: placeholderImage)
-    }    
-}
-
+ 

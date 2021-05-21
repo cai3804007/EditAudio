@@ -33,12 +33,12 @@ extension UICollectionView {
     
     func registerHeaderForNib(_ cellClass: UICollectionReusableView.Type) {
         let identifier = String(describing: cellClass)
-        register(UINib.init(nibName: identifier, bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: identifier)
+        register(UINib.init(nibName: identifier, bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: identifier)
     }
     
     func registerFooterForNib(_ cellClass: UICollectionReusableView.Type) {
         let identifier = String(describing: cellClass)
-        register(UINib.init(nibName: identifier, bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: identifier)
+        register(UINib.init(nibName: identifier, bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: identifier)
     }
     
     
@@ -50,7 +50,7 @@ extension UICollectionView {
     
     
     func dequeueReusableViewHeader<T: UICollectionReusableView>(with identifier: String, for indexPath: IndexPath) -> T {
-        let header = dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: identifier, for: indexPath)
+        let header = dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: identifier, for: indexPath)
         return header as! T
     }
     
@@ -58,7 +58,7 @@ extension UICollectionView {
     func dequeueReusableViewHeader<T: UICollectionReusableView>(with cellClass: T.Type, for indexPath: IndexPath) -> UICollectionReusableView {
         let identifier = String(describing: cellClass)
         print("iiiiii    " + identifier)
-        let header = dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: identifier, for: indexPath)
+        let header = dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: identifier, for: indexPath)
         print("ooooooo    " + identifier)
         return header //as! T
     }
@@ -66,7 +66,7 @@ extension UICollectionView {
     
     func dequeueReusableViewFooter<T: UICollectionReusableView>(with cellClass: T.Type, for indexPath: IndexPath) -> T {
         let identifier = String(describing: cellClass)
-        return dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: identifier, for: indexPath) as! T
+        return dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionFooter, withReuseIdentifier: identifier, for: indexPath) as! T
     }
     
 }

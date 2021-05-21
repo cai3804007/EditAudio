@@ -15,5 +15,13 @@ class ViewController: UITableViewController {
     }
 
 
+    @IBAction func deleClick(_ sender: Any) {
+        RecorderFileHandler().removeFile(fileName: "yinpin.m4a")
+        
+    }
+    
+    
+    
+    
 }
 
