@@ -149,23 +149,6 @@ class EditRecorderViewController: UIViewController {
         }
     }
     
-
-
-
-    
-    
-
-    
-    
-//    init(amplitudes: [Float], originalUrl: URL) {
-//        self.editorManager = AudioEditorManager(
-//            amplitudes: amplitudes,
-//            originalUrl: originalUrl
-//        )
-//        
-//        super.init(nibName: nil, bundle: nil)
-//    }
-    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
@@ -180,6 +163,21 @@ class EditRecorderViewController: UIViewController {
         rightinit = spaceWidth - meterWidth/2.0
         // Do any additional setup after loading the view.
     }
+    
+    
+    func resetAllViews() {
+        editScrollviewRight.constant = spaceWidth
+        editScrollviewLeft.constant = spaceWidth - meterWidth/2.0
+        scrollviewWidth.constant = self.meterWidth * CGFloat(self.amplitudes.count) + meterWidth
+        redLeftConst.constant = spaceWidth - meterWidth/2.0
+        redRightConst.constant = spaceWidth - meterWidth/2.0
+        rolingWidth.constant = self.meterWidth * CGFloat(self.amplitudes.count) + UIScreen.main.bounds.width
+        scrollviewWidth.constant = self.meterWidth * CGFloat(self.amplitudes.count) + meterWidth
+        rolingScrollview.setContentOffset(.zero, animated: false)
+    }
+    
+    
+    
     
     @objc func viewtap(){
         
@@ -317,7 +315,8 @@ class EditRecorderViewController: UIViewController {
 //
 //                    })
                     self.waveCollectionView.reloadData()
-                    
+                    self.resetAllViews()
+                    sender.isEnabled = false
                 }
             case let .failure(error):
                 print(error)

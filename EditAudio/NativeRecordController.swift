@@ -124,9 +124,9 @@ class NativeRecordController: UIViewController, AVAudioRecorderDelegate {
     }
     
     @IBAction func editClick(_ sender: Any) {
-        if self.recorder.isRecording {
-            self.stopRecord()
-        }
+        self.stopRecord()
+        
+        
         
         let story = UIStoryboard.init(name: "Main", bundle: nil)
         let vc = story.instantiateViewController(withIdentifier: "EditAutio")
@@ -145,10 +145,8 @@ class NativeRecordController: UIViewController, AVAudioRecorderDelegate {
     
     
     func stopRecord() {
-        if self.recorder.isRecording {
-            self.recorder.stop()
-            timer.fireDate = NSDate.distantFuture
-        }
+        self.recorder.stop()
+        timer.fireDate = NSDate.distantFuture
     }
     
     func pauseRecord() {

@@ -430,7 +430,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r8P-eM-fDp">
-                                <rect key="frame" x="0.0" y="373" width="414" height="160"/>
+                                <rect key="frame" x="0.0" y="237" width="414" height="160"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4Y5-tb-OS9">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
@@ -605,7 +605,7 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="3Q0-kY-eJH">
-                                <rect key="frame" x="57" y="300" width="300" height="53"/>
+                                <rect key="frame" x="57" y="164" width="300" height="53"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HWx-Tg-1dw">
                                         <rect key="frame" x="0.0" y="0.0" width="220" height="53"/>
@@ -657,7 +657,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="3Pc-IQ-UeO">
-                                <rect key="frame" x="15" y="553" width="384" height="50"/>
+                                <rect key="frame" x="15" y="417" width="384" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="开始时间" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VD6-4z-WJl">
                                         <rect key="frame" x="0.0" y="0.0" width="192" height="50"/>
@@ -678,7 +678,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Iyg-lx-JbH">
-                                <rect key="frame" x="15" y="623" width="384" height="50"/>
+                                <rect key="frame" x="15" y="487" width="384" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="结束时间" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bbt-KN-2EO">
                                         <rect key="frame" x="0.0" y="0.0" width="192" height="50"/>
@@ -700,7 +700,7 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZG0-nM-OmB">
-                                <rect key="frame" x="167" y="693" width="80" height="50"/>
+                                <rect key="frame" x="167" y="557" width="80" height="50"/>
                                 <color key="backgroundColor" systemColor="systemTealColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="Pjx-Kc-yAD"/>
@@ -715,7 +715,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jp6-Km-OgS">
-                                <rect key="frame" x="167" y="763" width="80" height="51"/>
+                                <rect key="frame" x="167" y="627" width="80" height="51"/>
                                 <color key="backgroundColor" red="0.99607843139999996" green="0.78039215689999997" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="51" id="mM3-Ag-1JM"/>
@@ -738,7 +738,7 @@
                             <constraint firstItem="Jp6-Km-OgS" firstAttribute="centerX" secondItem="byS-km-RDB" secondAttribute="centerX" id="NbP-Ao-SeO"/>
                             <constraint firstItem="byS-km-RDB" firstAttribute="trailing" secondItem="3Pc-IQ-UeO" secondAttribute="trailing" constant="15" id="PD6-l3-1zK"/>
                             <constraint firstItem="Jp6-Km-OgS" firstAttribute="top" secondItem="ZG0-nM-OmB" secondAttribute="bottom" constant="20" id="V5F-dI-dUU"/>
-                            <constraint firstItem="r8P-eM-fDp" firstAttribute="centerY" secondItem="byS-km-RDB" secondAttribute="centerY" id="Wql-p4-Oa9"/>
+                            <constraint firstItem="r8P-eM-fDp" firstAttribute="centerY" secondItem="byS-km-RDB" secondAttribute="centerY" multiplier="0.7" id="Wql-p4-Oa9"/>
                             <constraint firstItem="r8P-eM-fDp" firstAttribute="trailing" secondItem="byS-km-RDB" secondAttribute="trailing" id="age-PE-qwV"/>
                             <constraint firstItem="Iyg-lx-JbH" firstAttribute="top" secondItem="3Pc-IQ-UeO" secondAttribute="bottom" constant="20" id="ehv-a8-VIK"/>
                             <constraint firstItem="r8P-eM-fDp" firstAttribute="top" secondItem="3Q0-kY-eJH" secondAttribute="bottom" constant="20" id="he4-by-u3D"/>
