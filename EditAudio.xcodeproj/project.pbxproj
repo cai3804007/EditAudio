@@ -21,7 +21,7 @@
 		2CA00EF22656052D00EEC5CA /* UIView+SeanAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA00EE92656052D00EEC5CA /* UIView+SeanAdd.swift */; };
 		2CA00EF32656052D00EEC5CA /* LayoutMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA00EEA2656052D00EEC5CA /* LayoutMethod.swift */; };
 		2CA00EF42656052D00EEC5CA /* CellRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA00EEB2656052D00EEC5CA /* CellRegister.swift */; };
-		2CA00EFD2656306E00EEC5CA /* RecorderFileHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA00EFC2656306E00EEC5CA /* RecorderFileHandler.swift */; };
+		2CA00EFD2656306E00EEC5CA /* SeanFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA00EFC2656306E00EEC5CA /* SeanFileManager.swift */; };
 		2CA00F0526563D1700EEC5CA /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA00F0426563D1700EEC5CA /* AudioPlayer.swift */; };
 		2CA00F0D2656561800EEC5CA /* TimeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA00F0B2656561800EEC5CA /* TimeCollectionViewCell.swift */; };
 		2CA00F0E2656561800EEC5CA /* TimeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CA00F0C2656561800EEC5CA /* TimeCollectionViewCell.xib */; };
@@ -75,7 +75,7 @@
 		2CA00EE92656052D00EEC5CA /* UIView+SeanAdd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+SeanAdd.swift"; sourceTree = "<group>"; };
 		2CA00EEA2656052D00EEC5CA /* LayoutMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutMethod.swift; sourceTree = "<group>"; };
 		2CA00EEB2656052D00EEC5CA /* CellRegister.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellRegister.swift; sourceTree = "<group>"; };
-		2CA00EFC2656306E00EEC5CA /* RecorderFileHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecorderFileHandler.swift; sourceTree = "<group>"; };
+		2CA00EFC2656306E00EEC5CA /* SeanFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeanFileManager.swift; sourceTree = "<group>"; };
 		2CA00F0426563D1700EEC5CA /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		2CA00F0B2656561800EEC5CA /* TimeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCollectionViewCell.swift; sourceTree = "<group>"; };
 		2CA00F0C2656561800EEC5CA /* TimeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimeCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -179,7 +179,7 @@
 		2CA00EFB2656306000EEC5CA /* RecordHandler */ = {
 			isa = PBXGroup;
 			children = (
-				2CA00EFC2656306E00EEC5CA /* RecorderFileHandler.swift */,
+				2CA00EFC2656306E00EEC5CA /* SeanFileManager.swift */,
 				2CA00F0426563D1700EEC5CA /* AudioPlayer.swift */,
 				2CA00F1E26565C4600EEC5CA /* AudioEditorManager.swift */,
 				2CA00F2326565C9900EEC5CA /* AudioEditorHandler.swift */,
@@ -510,7 +510,7 @@
 			files = (
 				2CA00F1A265658FE00EEC5CA /* EditRecorderViewController.swift in Sources */,
 				2CF224812653C13200B16EC1 /* ViewController.swift in Sources */,
-				2CA00EFD2656306E00EEC5CA /* RecorderFileHandler.swift in Sources */,
+				2CA00EFD2656306E00EEC5CA /* SeanFileManager.swift in Sources */,
 				2CA00F0D2656561800EEC5CA /* TimeCollectionViewCell.swift in Sources */,
 				2CA00F14265657B700EEC5CA /* WaveWithMeterCollectionViewCell.swift in Sources */,
 				2CA00EF02656052D00EEC5CA /* LayoutTool.swift in Sources */,

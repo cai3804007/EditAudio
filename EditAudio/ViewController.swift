@@ -16,11 +16,27 @@ class ViewController: UITableViewController {
 
 
     @IBAction func deleClick(_ sender: Any) {
-        RecorderFileHandler().removeFile(fileName: "yinpin.m4a")
+        SeanFileManager.removeFile(fileName: "yinpin.m4a")
         
     }
     
     
+    @IBAction func editClick(_ sender: Any) {
+//        let editURL = SeanFileManager().fileUrl(fileName: "wode.m4a")
+//        let story = UIStoryboard.init(name: "Main", bundle: nil)
+//        let vc = story.instantiateViewController(withIdentifier: "EditAutio")
+//        if let audioEditorViewController = vc as? EditRecorderViewController{
+//
+//            audioEditorViewController.editorManager = AudioEditorManager(
+//                amplitudes: self.soundMeters,
+//                originalUrl:editURL!
+//            )
+//            navigationController?.pushViewController(
+//                audioEditorViewController,
+//                animated: true
+//            )
+        
+    }
     
     
 }

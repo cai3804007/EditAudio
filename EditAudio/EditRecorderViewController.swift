@@ -14,11 +14,74 @@ class EditRecorderViewController: UIViewController {
     @IBOutlet weak var millisecondTimeLabel: UILabel!
     @IBOutlet weak var totalTimeLabel: UILabel!
     
+    @IBOutlet weak var startLabel: UILabel!
+    
+    @IBOutlet weak var endLabel: UILabel!
+    
+    @IBOutlet weak var playButton: UIButton!
     
     
+    var leftinit :CGFloat = 0.0
+    var rightinit :CGFloat = 0.0
+     
     
+    @IBOutlet weak var redLeftConst: NSLayoutConstraint!{
+        didSet {
+            redLeftConst.constant = spaceWidth - meterWidth/2.0
+        }
+    }
+    
+    @IBOutlet weak var redRightConst: NSLayoutConstraint!  {
+        didSet {
+            redRightConst.constant = spaceWidth - meterWidth/2.0
+        }
+    }
+    
+    @IBOutlet weak var redLeftView: UIView!
+    @IBOutlet weak var redRightView: UIView!
+    
+    @IBOutlet weak var colorView: UIView!
+    
+    @IBOutlet weak var colorRight: NSLayoutConstraint!
+    @IBOutlet weak var colorLeft: NSLayoutConstraint!
+    
+    @IBOutlet weak var editScrollviewRight: NSLayoutConstraint!{
+        didSet {
+            editScrollviewRight.constant = spaceWidth
+        }
+    }
+    @IBOutlet weak var editScrollviewLeft: NSLayoutConstraint!
+    {
+        didSet {
+            editScrollviewLeft.constant = spaceWidth - meterWidth/2.0
+        }
+    }
+    
+    @IBOutlet weak var editScrollView: UIScrollView!{
+        didSet {
+            editScrollView.delegate = self
+        }
+    }
+    
+    @IBOutlet weak var rolingScrollview: UIScrollView!{
+        didSet {
+            rolingScrollview.delegate = self
+        }
+    }
+    
+    @IBOutlet weak var rolingWidth: NSLayoutConstraint!{
+        didSet {
+            rolingWidth.constant = self.meterWidth * CGFloat(self.amplitudes.count) + UIScreen.main.bounds.width
+        }
+    }
+    
+    @IBOutlet weak var scrollviewWidth: NSLayoutConstraint!{
+        didSet {
+            scrollviewWidth.constant = self.meterWidth * CGFloat(self.amplitudes.count) + meterWidth
+        }
+    }
     // 音频编辑经理
-    let editorManager: AudioEditorManager
+   public  var editorManager: AudioEditorManager!
     // 振幅
     var amplitudes: [Float] { editorManager.amplitudes }
     // 时间间隔的宽度(0.1秒的宽度)
@@ -46,16 +109,12 @@ class EditRecorderViewController: UIViewController {
     var totalTime: Double {
         editorManager.totalTime
     }
-    // 左边编辑栏的时间
-    var leftEditBarTime: Double {
-        let leftTime = (leftEditBarLeading.constant - spaceWidth) / oneSecoundWidth
-        return max(0, min(Double(leftTime), totalTime))
-    }
-    // 右边的编辑栏的时间
-    var rightEditBarTime: Double {
-        let rightTime = (contentViewWidth - rightEditBarTrailing.constant - spaceWidth - meterWidth) / oneSecoundWidth
-        return max(0, min(Double(rightTime), totalTime))
-    }
+
+    //开始时间
+    var startTime:CGFloat = 0.0
+    //结束时间
+    var endTime:CGFloat = 0.0
+    
     
     //播放的计时器
     var playerTimer: Timer?
@@ -85,63 +144,136 @@ class EditRecorderViewController: UIViewController {
             timeCollectionView.delegate = self
             timeCollectionView.showsHorizontalScrollIndicator = false
             timeCollectionView.isScrollEnabled = false
-            waveCollectionView.registerForNib(TimeCollectionViewCell.self)
+            timeCollectionView.registerForNib(TimeCollectionViewCell.self)
 
         }
     }
     
-    @IBOutlet weak var leftEditBarLeading: NSLayoutConstraint!{
-        didSet {
-            leftEditBarLeading.constant = spaceWidth
-        }
-    }
-    
-    @IBOutlet weak var rightEditBarTrailing: NSLayoutConstraint!{
-        didSet {
-            rightEditBarTrailing.constant = spaceWidth - meterWidth
-        }
-    }
-    
-    @IBOutlet weak var editEreaScrollView: UIScrollView!{
-        didSet {
-            editEreaScrollView.delegate = self
-            editEreaScrollView.showsHorizontalScrollIndicator = false
-        }
-    }
+
+
+
     
     
-    @IBOutlet weak var editBarScrollView: UIScrollView! {
-        didSet {
-            editBarScrollView.delegate = self
-            editBarScrollView.showsHorizontalScrollIndicator = false
-        }
-    }
+
     
     
-    init(amplitudes: [Float], originalUrl: URL) {
-        self.editorManager = AudioEditorManager(
-            amplitudes: amplitudes,
-            originalUrl: originalUrl
-        )
-        
-        super.init(nibName: nil, bundle: nil)
-    }
+//    init(amplitudes: [Float], originalUrl: URL) {
+//        self.editorManager = AudioEditorManager(
+//            amplitudes: amplitudes,
+//            originalUrl: originalUrl
+//        )
+//        
+//        super.init(nibName: nil, bundle: nil)
+//    }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.redLeftView.addTapGesturesTarget(self, selector: #selector(viewtap))
+        self.redLeftView.addPanGesturesTarget(self, selector: #selector(viewpan(pan:)))
+        self.redRightView.addPanGesturesTarget(self, selector:#selector(viewpan(pan:)))
+        leftinit = spaceWidth - meterWidth/2.0
+        rightinit = spaceWidth - meterWidth/2.0
         // Do any additional setup after loading the view.
+    }
+    
+    @objc func viewtap(){
+        
+        print("tap ====")
+    }
+    
+    @objc func viewpan(pan : UIPanGestureRecognizer)  {
+        let view = pan.view
+        
+        
+        let translation = pan.translation(in:view)
+        print("translation ==== " + NSStringFromCGPoint(translation))
+        //相对有手势父视图的坐标点(注意如果父视图是scrollView,locationPoint.x可能会大于视图的width)
+//        let locationPoint = pan.location(in: view)
+        let isleft = view?.tag == 555
+        
+        guard let margin = view?.tag == 555 ? redLeftConst : redRightConst else {
+            return
+        }
+        let yidong = abs(translation.x)
+        pan.setTranslation(.zero, in: pan.view)
+        
+        
+        var result : CGFloat = margin.constant
+        var fuzhi = false
+        
+        if translation.x < 0 {//往左滑
+            if isleft {//是左边线条
+                 result = margin.constant - yidong
+                if result >=  (spaceWidth  - meterWidth/2.0){//左边线条不能超过右边线条
+                    fuzhi = true
+//                    margin.constant = result
+                }
+            }else{
+                 result = margin.constant + yidong
+                if result >=  spaceWidth - meterWidth/2.0{
+                    fuzhi = true
+//                    margin.constant = result
+                }
+            }
+            
+            //向左滑
+            print("向左滑")
+        } else if translation.x > 0 {//向右滑
+            if isleft {//是左边线条
+                 result = margin.constant + yidong
+                if result >=  (spaceWidth  - meterWidth/2.0){
+                    fuzhi = true
+//                    margin.constant = result
+                }
+            }else{
+                 result = margin.constant - yidong
+                if result >=  spaceWidth - meterWidth/2.0{
+                    fuzhi = true
+//                    margin.constant = result
+                }
+            }
+            print("向右滑")
+        }
+        
+        if fuzhi {
+            if isleft {
+                if result + redLeftView.frame.width > redRightView.frame.minX {
+                    return
+                }
+                
+                
+            }else{
+                if (rolingWidth.constant - result - redRightView.frame.width) <= redLeftView.frame.maxX {
+                    return
+                }
+            }
+            margin.constant = result
+        }
+        
+        
+        
+        var leftTime = (redLeftConst.constant - leftinit)/oneSecoundWidth
+        leftTime = CGFloat(max(0, min(Double(leftTime), totalTime)))
+        startTime = leftTime
+        let leftText = editorManager.timeText(time: Double(leftTime))
+        self.startLabel.text = leftText.minute  +  leftText.second + leftText.millisecond
+        
+                         //减去的时间
+        let ringhtTime = CGFloat(totalTime) - (redRightConst.constant - rightinit)/oneSecoundWidth
+        let rightText = editorManager.timeText(time: Double(ringhtTime))
+        endTime = ringhtTime
+        self.endLabel.text = rightText.minute +  rightText.second + rightText.millisecond
     }
     
     
     func setupCurrentTime() {
         //当前滚动位置/ 20px(1秒宽度)
-        let currentTime = editBarScrollView.contentOffset.x / oneSecoundWidth
+        let currentTime = editScrollView.contentOffset.x / oneSecoundWidth
         // 控制当前时间不超过收录时间
         let time = max(0, min(Double(currentTime), totalTime))
         let timeText = editorManager.timeText(time: time)
@@ -149,6 +281,81 @@ class EditRecorderViewController: UIViewController {
         secondTimeLabel.text = timeText.second
         millisecondTimeLabel.text = timeText.millisecond
     }
+    
+    @IBAction func playButtonClick(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        if sender.isSelected {
+            let scrollX = redLeftConst.constant - leftinit
+            rolingScrollview.setContentOffset(CGPoint(x: scrollX, y: 0), animated: false)
+        }
+
+        let isPlaying = editorManager.isPlaying
+        // 当前滚动位置/ 20px(1秒宽度)
+        let currentTime = rolingScrollview.contentOffset.x / oneSecoundWidth
+        let time = max(0, min(Double(currentTime), totalTime))
+        // 从AVAudioPlayer的当前位置播放和暂停
+        isPlaying
+            ? editorManager.pause()
+            : editorManager.play(currentTime: time)
+        // 设置计时器
+        setupTimer(isPlaying: editorManager.isPlaying)
+        
+    }
+    
+    @IBAction func exportAudio(_ sender: UIButton) {
+        let editString = SeanFileManager.editAudioName()
+        guard let exportURL = SeanFileManager.fileUrl(fileName: editString, .editAudio)?.path
+        else { return }
+        
+        editorManager.editSaveCenter(leftTime:Double(self.startTime) , rightime: Double(self.endTime),exporURL: exportURL) { (result) in
+            switch result {
+            case let .success(removeRange):
+                 print("导出成功")
+                print(removeRange)
+                DispatchQueue.main.async {
+//                    self.waveCollectionView.performBatchUpdates({
+//
+//                    })
+                    self.waveCollectionView.reloadData()
+                    
+                }
+            case let .failure(error):
+                print(error)
+                print("导出失败")
+            }
+        }
+    }
+    
+    
+    
+    
+    private func setupTimer(isPlaying: Bool) {
+        if !isPlaying {
+            playerTimer?.invalidate()
+            playerTimer = nil
+        } else {
+            playerTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
+//                guard self.editorManager.isPlaying else {
+//                    timer.invalidate()
+//                    self.playButton.isSelected = false
+//                    return
+//                }
+                // 每0.1秒将仪表宽度加到当前位置。
+                var movePoint = self.rolingScrollview.contentOffset
+                movePoint.x += 2
+                let scrollX = (self.redRightView.frame.maxX - self.rightinit) - self.meterWidth
+                if movePoint.x >= scrollX{
+                    self.rolingScrollview.setContentOffset(CGPoint(x: scrollX, y: 0), animated: false)
+                    self.editorManager.pause()
+                    self.playButton.isSelected = false
+                    timer.invalidate()
+                }else{
+                    self.rolingScrollview.setContentOffset(movePoint, animated: false)
+                }
+            }
+        }
+    }
+    
     
     /*
     // MARK: - Navigation
@@ -240,7 +447,7 @@ extension EditRecorderViewController: UIScrollViewDelegate {
         //连接到每个ScrollView
         waveCollectionView.setContentOffset(contentOffset, animated: false)
         timeCollectionView.setContentOffset(contentOffset, animated: false)
-        editEreaScrollView.setContentOffset(contentOffset, animated: false)
+        editScrollView.setContentOffset(contentOffset, animated: false)
         //根据滚动量更新当前时刻
         setupCurrentTime()
     }

@@ -127,6 +127,14 @@ public extension UIView {
         addGestureRecognizer(tapGesture)
     }
     
+    func addPanGesturesTarget(_ target: Any?, selector: Selector) {
+        isUserInteractionEnabled = true
+//        let tapGesture = UITapGestureRecognizer(target: target, action: selector)
+        let panGesture = UIPanGestureRecognizer(target: target, action: selector)
+        addGestureRecognizer(panGesture)
+    }
+    
+    
     func addRoundedCorners(_ corners: UIRectCorner,withRadii radii: CGSize,viewRect rect: CGRect
     ) {
         // 单边圆角或者单边框

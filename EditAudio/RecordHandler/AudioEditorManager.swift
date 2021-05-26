@@ -14,7 +14,7 @@ class AudioEditorManager {
     var amplitudes: [Float] // 获得的波形
     
     var audioPlayer = SeanAudioPlayer()
-    var fileManager = RecorderFileHandler()
+    var fileManager = SeanFileManager()
     var editHandler = AudioEditorHandler()
     
     // 获得的振幅的时间间隔
@@ -34,12 +34,17 @@ class AudioEditorManager {
     var isPlaying: Bool { audioPlayer.isPlaying }
     
     init(amplitudes: [Float], originalUrl: URL) {
+        
+        
+        
         self.originalUrl = originalUrl
         self.amplitudes = amplitudes
+        
+        
         audioPlayer.setupPlayer(with: originalUrl)
     }
     
-    //在编辑栏中编辑指定的时间
+    //在编辑栏中编辑指定的时间   0 - 左, 右到尾
     func edit(
         leftTime: Double, // 左栏的编辑时间
         rightime: Double, // 右栏的编辑时间
@@ -66,8 +71,8 @@ class AudioEditorManager {
         )
         
         //准备 导出的文件
-        fileManager.removeFile(fileName: editFileName)
-        let exportFileUrl = fileManager.fileUrl(fileName: editFileName)!
+        SeanFileManager.removeFile(fileName: editFileName)
+        let exportFileUrl = SeanFileManager.fileUrl(fileName: editFileName)!
         
         // 编辑指定的时间范围
         editHandler.edit(
@@ -90,6 +95,56 @@ class AudioEditorManager {
         }
         
     }
+    
+    
+    
+    //在编辑栏中编辑指定的时间   0 - 左, 右到尾
+    func editSaveCenter(
+        leftTime: Double, // 左栏的编辑时间
+        rightime: Double, // 右栏的编辑时间
+        exporURL:String,
+        completion: @escaping (Result<Range<Int>, Error>) -> Void
+    ) {
+        
+        // 每0.1秒就会得到一个波形，所以可以把它圆起来。
+        let roundedLeft = round(leftTime * 10) / 10
+        let roundedRight = round(rightime * 10) / 10
+
+        let times = [CMTime(value: Int64(roundedLeft*10), timescale: 10),CMTime(value: Int64(roundedRight*10), timescale: 10)]
+                
+        //准备 导出的文件
+        SeanFileManager.removeFile(fileName: exporURL)
+        let exportFileUrl = URL(fileURLWithPath: exporURL) // SeanFileManager.fileUrl(fileName: editFileName,.editAudio)!
+        // 编辑指定的时间范围
+        editHandler.editSaveCenter(
+            originUrl: originalUrl, exportFileUrl: exportFileUrl,
+            timeRanges: times
+        ) { result in
+            switch result {
+            case let .success(url):
+                self.editFileUrl = url
+                // 将编辑后的文件重新设定为播放器
+                self.audioPlayer.setupPlayer(with: url)
+                // 编辑范围
+                let saveRange = Int(roundedLeft * 10)..<Int(roundedRight * 10)
+                let lastRange = Int(roundedRight * 10)..<Int(self.totalTime*10)
+                let fistRange = 0..<Int(roundedLeft * 10)
+                // 去除编辑范围，在UI中也反映去除的编辑范围
+                self.amplitudes.removeSubrange(lastRange)
+                self.amplitudes.removeSubrange(fistRange)
+                completion(.success(saveRange))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+        
+    }
+    
+    
+    
+    
+    
+    
     
     func play(currentTime: Double) {
         audioPlayer.play(currentTime: currentTime)

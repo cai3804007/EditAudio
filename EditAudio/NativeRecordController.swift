@@ -50,8 +50,8 @@ class NativeRecordController: UIViewController, AVAudioRecorderDelegate {
     
     lazy var playTimer=Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(playchange), userInfo: nil, repeats: true)
     
-    var soundFileURL : URL!
-    var fileHandler = RecorderFileHandler()
+    var soundFileURL : URL?
+    var fileHandler = SeanFileManager()
     /// 录音器
        private var recorder: AVAudioRecorder!
        /// 录音器设置
@@ -66,15 +66,21 @@ class NativeRecordController: UIViewController, AVAudioRecorderDelegate {
        /// 声音数据数组
     private var soundMeters: [Float] = []
     
-    let player = SeanAudioPlayer()
+    lazy var player = SeanAudioPlayer()
        /// 录音时间
        private var recordTime = 0.00
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        fileHandler.removeFile(fileName: "yinpin.m4a")
-        soundFileURL = fileHandler.fileUrl(fileName: "yinpin.m4a")
+//        fileHandler.removeFile(fileName: "yinpin.m4a")
+//        soundFileURL = fileHandler.fileUrl(fileName: "yinpin.m4a")
+        
+        let audioFileName = SeanFileManager.audioName()
+        
+        soundFileURL = SeanFileManager.fileUrl(fileName: audioFileName, .audio)
+        
+        
         self.recordCollectionView.delegate = self
         self.recordCollectionView.dataSource = self
         self.recordCollectionView.registerForNib(WaveViewCell.self)
@@ -102,20 +108,60 @@ class NativeRecordController: UIViewController, AVAudioRecorderDelegate {
     
     @IBAction func beginWrite(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
-        if sender.isSelected {//正在录制
-            timer.fireDate = NSDate.distantPast
-            self.recorder.record()
+        if sender.isSelected {
+            self.continueRecord()
         }else{
-            timer.fireDate = NSDate.distantFuture
-            self.recorder.pause()
+            self.pauseRecord()
         }
         
     }
     @IBAction func beginPlay(_ sender: UIButton) {
-        self.recorder.stop()
-        player.setupPlayer(with: soundFileURL)
+        if self.recorder.isRecording {
+            self.stopRecord()
+        }
+        player.setupPlayer(with: soundFileURL!)
         player.play(currentTime: 0)
     }
+    
+    @IBAction func editClick(_ sender: Any) {
+        if self.recorder.isRecording {
+            self.stopRecord()
+        }
+        
+        let story = UIStoryboard.init(name: "Main", bundle: nil)
+        let vc = story.instantiateViewController(withIdentifier: "EditAutio")
+
+        if let audioEditorViewController = vc as? EditRecorderViewController{
+            audioEditorViewController.editorManager = AudioEditorManager(
+                amplitudes: self.soundMeters,
+                originalUrl:self.soundFileURL!
+            )
+            navigationController?.pushViewController(
+                audioEditorViewController,
+                animated: true
+            )
+        }       
+    }
+    
+    
+    func stopRecord() {
+        if self.recorder.isRecording {
+            self.recorder.stop()
+            timer.fireDate = NSDate.distantFuture
+        }
+    }
+    
+    func pauseRecord() {
+        timer.fireDate = NSDate.distantFuture
+        self.recorder.pause()
+    }
+    
+    func continueRecord() {
+        timer.fireDate = NSDate.distantPast
+        self.recorder.record()
+    }
+    
+    
     
 
     //更新collectionview
