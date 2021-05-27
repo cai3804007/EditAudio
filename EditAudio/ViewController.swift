@@ -9,15 +9,20 @@ import UIKit
 import AVFoundation
 
 class ViewController: UITableViewController {
-
+    let par = ParsingAudioHander.init()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
 
 
-    @IBAction func deleClick(_ sender: Any) {
-        SeanFileManager.removeFile(fileName: "yinpin.m4a")
+    @IBAction func syntheticAudioButtonClick(_ sender: Any) {
+        let name = SeanFileManager.audioName()
+        guard let path = SeanFileManager.fileUrl(fileName: name) else {
+            return
+        }
+        
+        par.synthetiAudio(withOutPath: path.path)
         
     }
     
@@ -48,7 +53,7 @@ class ViewController: UITableViewController {
     
     func getAudioMaters(audio:URL) {
         
-        let par = ParsingAudioHander.init()
+       
         
         let array = par.getRecorderData(from: audio)
         var amplitudes = [Float]()

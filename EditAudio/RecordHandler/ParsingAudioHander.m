@@ -134,4 +134,174 @@
     }
     return maxvalue;
 }
+
+
+
+- (void)seanSynthetiAudioWithOutPath:(NSString *)path{
+    NSString *auidoPath1 = [[NSBundle mainBundle] pathForResource:@"歌曲" ofType:@"mp3"];
+    NSString *audioPath2 = [[NSBundle mainBundle] pathForResource:@"背景" ofType:@"mp3"];
+
+    AVURLAsset *audioAsset1 = [AVURLAsset assetWithURL:[NSURL fileURLWithPath:auidoPath1]];
+    AVURLAsset *audioAsset2 = [AVURLAsset assetWithURL:[NSURL fileURLWithPath:audioPath2]];
+    
+    AVMutableComposition *compostion = [AVMutableComposition composition];
+
+    AVMutableCompositionTrack *video = [compostion addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:0];
+    
+    [video insertTimeRange:CMTimeRangeMake(kCMTimeZero, audioAsset1.duration) ofTrack:[audioAsset1 tracksWithMediaType:AVMediaTypeAudio].firstObject atTime:kCMTimeZero error:nil];
+    
+    
+    AVMutableCompositionTrack *audio = [compostion addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:0];
+    
+    
+    
+    
+    [audio insertTimeRange:CMTimeRangeMake(kCMTimeZero, audioAsset2.duration) ofTrack:[audioAsset2 tracksWithMediaType:AVMediaTypeAudio].firstObject atTime:kCMTimeZero error:nil];
+
+}
+
+
+- (void)synthetiAudioWithOutPath:(NSString *)path{
+    
+//    [self mergeAudioWithSoundArray:@[@"歌曲",@"背景"] path:path];
+    
+    NSString *auidoPath1 = [[NSBundle mainBundle] pathForResource:@"歌曲" ofType:@"mp3"];
+    NSString *audioPath2 = [[NSBundle mainBundle] pathForResource:@"背景" ofType:@"mp3"];
+
+    AVURLAsset *audioAsset1 = [AVURLAsset assetWithURL:[NSURL fileURLWithPath:auidoPath1]];
+    AVURLAsset *audioAsset2 = [AVURLAsset assetWithURL:[NSURL fileURLWithPath:audioPath2]];
+    AVMutableComposition *composition = [AVMutableComposition composition];    // 音频轨道
+    AVMutableCompositionTrack *audioTrack1 = [composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:0];
+    AVMutableCompositionTrack *audioTrack2 = [composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:0];    // 音频素材轨道
+    AVAssetTrack *audioAssetTrack1 = [[audioAsset1 tracksWithMediaType:AVMediaTypeAudio] firstObject];
+    AVAssetTrack *audioAssetTrack2 = [[audioAsset2 tracksWithMediaType:AVMediaTypeAudio] firstObject];
+
+   
+    float time1 = CMTimeGetSeconds(audioAsset1.duration);
+    float time2 = CMTimeGetSeconds(audioAsset2.duration);
+    
+    if (time2 > time1) {
+        // 音频合并 - 插入音轨文件
+        [audioTrack1 insertTimeRange:CMTimeRangeMake(kCMTimeZero, audioAsset1.duration) ofTrack:audioAssetTrack1 atTime:kCMTimeZero error:nil];
+        [audioTrack2 insertTimeRange:CMTimeRangeMake(kCMTimeZero, audioAsset2.duration) ofTrack:audioAssetTrack2 atTime:kCMTimeZero error:nil];
+    }else{
+        NSInteger number = (int)(time1/time2);
+        float residue = time1 - number * time2;
+        [audioTrack1 insertTimeRange:CMTimeRangeMake(kCMTimeZero, audioAsset1.duration) ofTrack:audioAssetTrack1 atTime:kCMTimeZero error:nil];
+        for (int i = 0; i < number; i++) {
+            CMTime time = CMTimeMake(i * time2, audioAsset2.duration.timescale);
+            [audioTrack2 insertTimeRange:CMTimeRangeMake(time, audioAsset2.duration) ofTrack:audioAssetTrack2 atTime:time error:nil];
+//            [audioTrack2 insertTimeRange:CMTimeRangeMake(kCMTimeZero, audioAsset2.duration) ofTrack:audioAssetTrack2 atTime:kCMTimeZero error:nil];
+            
+        }
+        if (residue-0.5 > 0) {
+            CMTime time = CMTimeMake(number * time2, audioAsset2.duration.timescale);
+            CMTime residueTime = CMTimeMake(residue, 1);
+            
+            NSError *error;
+           BOOL fail = [audioTrack2 insertTimeRange:CMTimeRangeMake(time, residueTime) ofTrack:audioAssetTrack2 atTime:time error:&error];
+            if (!fail) {
+                NSLog(@"插入失败======%@",error);
+            }
+        }
+    }
+    
+//    [bgAudio insertTimeRange:CMTimeRangeMake(kCMTimeZero, originalAudioAsset.duration) ofTrack:[bgAudioAsset tracksWithMediaType:AVMediaTypeAudio].firstObject atTime:kCMTimeZero error:nil];
+
+    
+    
+    
+    
+    // 合并后的文件导出 - 音频文件目前只找到合成m4a类型的
+    AVAssetExportSession *session = [[AVAssetExportSession alloc] initWithAsset:composition presetName:AVAssetExportPresetAppleM4A];
+    NSString *outPutFilePath = path;
+    session.outputURL = [NSURL fileURLWithPath:outPutFilePath];
+    session.outputFileType = AVFileTypeAppleM4A;
+    [session exportAsynchronouslyWithCompletionHandler:^{
+        if (session.status == AVAssetExportSessionStatusCompleted) {
+            NSLog(@"合并完成----%@", outPutFilePath);
+        }
+    }];
+}
+
+
+/**
+ *  音频合并
+ *
+ *  @param soundArr 资源文件数组
+ */
+- (void)mergeAudioWithSoundArray:(NSArray *)soundArr path:(NSString *)path
+{
+    NSMutableArray <AVURLAsset *> *audioAssetArr = [NSMutableArray arrayWithCapacity:0];
+    // 音频轨道数组
+    NSMutableArray <AVMutableCompositionTrack *> *audioCompositionTrackArr = [NSMutableArray arrayWithCapacity:0];
+    // 音频素材轨道数组
+    NSMutableArray <AVAssetTrack *> *audioAssetTrackArr = [NSMutableArray arrayWithCapacity:0];
+
+    AVMutableComposition *audioCompostion = [AVMutableComposition composition];
+
+    for (NSString *soundStr in soundArr)
+    {
+        NSString *audioPath = [[NSBundle mainBundle] pathForResource:soundStr ofType:@"mp3"];
+        AVURLAsset *audioAsset = [AVURLAsset assetWithURL:[NSURL fileURLWithPath:audioPath]];
+        [audioAssetArr addObject:audioAsset];
+        // 音频轨道
+        AVMutableCompositionTrack *audioCompositionTrack = [audioCompostion addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:0];
+        [audioCompositionTrackArr addObject:audioCompositionTrack];
+        // 音频素材轨道
+        AVAssetTrack *audioAssetTrack = [[audioAsset tracksWithMediaType:AVMediaTypeAudio] firstObject];
+        [audioAssetTrackArr addObject:audioAssetTrack];
+
+    }
+
+    for (int i = 0; i < audioAssetArr.count; i ++)
+    {
+        //设置处理时间
+        CMTime cmTime;
+        if (i == 0) {
+            cmTime = kCMTimeZero;
+        }else{
+            cmTime = audioAssetArr[i-1].duration;
+        }
+        // 音频合并 - 插入音轨文件
+        [audioCompositionTrackArr[i] insertTimeRange:CMTimeRangeMake(kCMTimeZero, audioAssetArr[i].duration) ofTrack:audioAssetTrackArr[i] atTime:cmTime error:nil];
+    }
+    
+    // 合并后的文件导出 - `presetName`要和之后的`session.outputFileType`相对应。
+    AVAssetExportSession *session = [[AVAssetExportSession alloc] initWithAsset:audioCompostion presetName:AVAssetExportPresetAppleM4A];
+//    NSString *outPutFilePath = [self getFilePath];
+    // 查看当前session支持的fileType类型
+    NSLog(@"---%@",[session supportedFileTypes]);
+    session.outputURL = [NSURL fileURLWithPath:path];
+    session.outputFileType = AVFileTypeAppleM4A; //与上述的`present`相对应
+    session.shouldOptimizeForNetworkUse = YES;   //优化网络
+    
+    [session exportAsynchronouslyWithCompletionHandler:^{
+        if (session.status == AVAssetExportSessionStatusCompleted) {
+            NSLog(@"合并成功----%@", path);
+            
+            NSURL *soundURL = [NSURL fileURLWithPath:path];
+            SystemSoundID soundID;
+            AudioServicesCreateSystemSoundID((__bridge CFURLRef)soundURL, &soundID);
+            AudioServicesPlaySystemSound(soundID);
+            AudioServicesPlayAlertSoundWithCompletion(soundID, ^{
+            });
+            
+        } else {
+            NSLog(@"session.status:%ld",(long)session.status);
+            // 其他情况, 具体请看这里`AVAssetExportSessionStatus`.
+        }
+    }];
+}
+
+- (NSString *)getFilePath
+{
+    NSString *filePath = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) firstObject];
+    NSString *folderName = [filePath stringByAppendingPathComponent:@"Sounds"];
+    BOOL isCreateSuccess = [[NSFileManager defaultManager] createDirectoryAtPath:filePath withIntermediateDirectories:YES attributes:nil error:nil];
+    if (isCreateSuccess) filePath = [folderName stringByAppendingPathComponent:@"speak.m4a"];
+    return filePath;
+}
+
+
 @end

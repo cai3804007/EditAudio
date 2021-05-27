@@ -102,9 +102,9 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J2Z-70-gk6">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                                                    <state key="normal" title="删除录音"/>
+                                                    <state key="normal" title="背景音乐合成"/>
                                                     <connections>
-                                                        <action selector="deleClick:" destination="Qcm-Q5-row" eventType="touchUpInside" id="dya-rc-Gft"/>
+                                                        <action selector="syntheticAudioButtonClick:" destination="Qcm-Q5-row" eventType="touchUpInside" id="00l-iQ-Vl5"/>
                                                     </connections>
                                                 </button>
                                             </subviews>

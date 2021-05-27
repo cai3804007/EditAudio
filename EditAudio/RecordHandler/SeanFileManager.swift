@@ -19,6 +19,7 @@ class SeanFileManager {
         case cache
         case audio
         case editAudio
+        case syntheticAudio
     }
     
     let fileManager: FileManager = .default
@@ -39,6 +40,12 @@ class SeanFileManager {
             return path
         case .editAudio:
             let path = cachetDir + "/editAudio"
+            if !fileExists(atPath: path) {
+                createDirectory(atPath: path)
+            }
+            return path
+        case .syntheticAudio:
+            let path = cachetDir + "/syntheticAudio"
             if !fileExists(atPath: path) {
                 createDirectory(atPath: path)
             }

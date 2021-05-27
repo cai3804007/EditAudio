@@ -32,6 +32,8 @@
 		2CA00F2426565C9900EEC5CA /* AudioEditorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA00F2326565C9900EEC5CA /* AudioEditorHandler.swift */; };
 		2CB7E983265F38E000BAC2E3 /* ParsingAudioHander.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CB7E982265F38E000BAC2E3 /* ParsingAudioHander.m */; };
 		2CB7E98E265F3CC700BAC2E3 /* ParsingAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB7E98D265F3CC700BAC2E3 /* ParsingAudio.swift */; };
+		2CB7E99D265F8CF100BAC2E3 /* 背景.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2CB7E99C265F8CF100BAC2E3 /* 背景.mp3 */; };
+		2CB7E9A2265F8D3200BAC2E3 /* 歌曲.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2CB7E9A1265F8D3200BAC2E3 /* 歌曲.mp3 */; };
 		2CB8761126551D72005DB2DD /* NativeRecordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB8761026551D72005DB2DD /* NativeRecordController.swift */; };
 		2CB88372265E502500FAF79E /* WaveformImageDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB8836D265E502400FAF79E /* WaveformImageDrawer.swift */; };
 		2CB88373265E502500FAF79E /* TempiFFT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB8836E265E502400FAF79E /* TempiFFT.swift */; };
@@ -95,6 +97,8 @@
 		2CB7E981265F38E000BAC2E3 /* ParsingAudioHander.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ParsingAudioHander.h; sourceTree = "<group>"; };
 		2CB7E982265F38E000BAC2E3 /* ParsingAudioHander.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ParsingAudioHander.m; sourceTree = "<group>"; };
 		2CB7E98D265F3CC700BAC2E3 /* ParsingAudio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsingAudio.swift; sourceTree = "<group>"; };
+		2CB7E99C265F8CF100BAC2E3 /* 背景.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "背景.mp3"; sourceTree = "<group>"; };
+		2CB7E9A1265F8D3200BAC2E3 /* 歌曲.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "歌曲.mp3"; sourceTree = "<group>"; };
 		2CB8761026551D72005DB2DD /* NativeRecordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeRecordController.swift; sourceTree = "<group>"; };
 		2CB8836D265E502400FAF79E /* WaveformImageDrawer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaveformImageDrawer.swift; sourceTree = "<group>"; };
 		2CB8836E265E502400FAF79E /* TempiFFT.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempiFFT.swift; sourceTree = "<group>"; };
@@ -249,6 +253,8 @@
 				2CA00EE22656052D00EEC5CA /* Category */,
 				2CA00ED7265602FC00EEC5CA /* Record */,
 				2C494D752654B48F00199487 /* 123.m4a */,
+				2CB7E99C265F8CF100BAC2E3 /* 背景.mp3 */,
+				2CB7E9A1265F8D3200BAC2E3 /* 歌曲.mp3 */,
 				2CF2247C2653C13200B16EC1 /* AppDelegate.swift */,
 				2CF224802653C13200B16EC1 /* ViewController.swift */,
 				2C494D852654B71700199487 /* WaveViewController.swift */,
@@ -415,6 +421,8 @@
 				2CA00EDB2656033D00EEC5CA /* WaveViewCell.xib in Resources */,
 				2CF224842653C13200B16EC1 /* Main.storyboard in Resources */,
 				2CA00F15265657B700EEC5CA /* WaveWithMeterCollectionViewCell.xib in Resources */,
+				2CB7E99D265F8CF100BAC2E3 /* 背景.mp3 in Resources */,
+				2CB7E9A2265F8D3200BAC2E3 /* 歌曲.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
