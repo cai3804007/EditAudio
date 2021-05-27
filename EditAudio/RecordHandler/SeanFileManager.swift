@@ -118,6 +118,14 @@ class SeanFileManager {
         return (String.random(5) + ".m4a")
     }
     
+    static func getAudios() -> Array<String>?{
+        
+        let audios = FileManager.default.subpaths(atPath: urlSting(type: .audio))
+        
+        return audios
+    }
+    
+    
     
     
 }

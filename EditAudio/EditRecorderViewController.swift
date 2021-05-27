@@ -243,8 +243,6 @@ class EditRecorderViewController: UIViewController {
                 if result + redLeftView.frame.width > redRightView.frame.minX {
                     return
                 }
-                
-                
             }else{
                 if (rolingWidth.constant - result - redRightView.frame.width) <= redLeftView.frame.maxX {
                     return
