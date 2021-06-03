@@ -11,7 +11,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ParsingAudioHander : NSObject
 - (NSArray<NSNumber *> *)getRecorderDataFromURL:(NSURL *)url;
-- (void)synthetiAudioWithOutPath:(NSString *)path;
+- (void)synthetiAudioWithAudioPath:(NSString *)audioPath bgPath:(NSString *)bgPath outPath:(NSString *)outPath completion:(void (^_Nullable)(BOOL isSucess,NSString * path))completion;
 @end
+
+
+
+
 
 NS_ASSUME_NONNULL_END

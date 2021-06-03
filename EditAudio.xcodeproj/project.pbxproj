@@ -7,9 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C068A4F2664CCAD0069F921 /* FragmentBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C068A4E2664CCAD0069F921 /* FragmentBuilder.swift */; };
+		2C068A542664CD190069F921 /* NodeOutputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C068A532664CD190069F921 /* NodeOutputView.swift */; };
+		2C068A592664D2FE0069F921 /* FloatPlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C068A582664D2FD0069F921 /* FloatPlot.swift */; };
 		2C494D762654B48F00199487 /* 123.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 2C494D752654B48F00199487 /* 123.m4a */; };
 		2C494D862654B71700199487 /* WaveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C494D852654B71700199487 /* WaveViewController.swift */; };
 		2C494D992654BB7200199487 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2C494D982654BB7200199487 /* AudioKit */; };
+		2C8AF7502661ED5B0003D212 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8AF74F2661ED5B0003D212 /* TableView.swift */; };
+		2C8AF7592661EDB10003D212 /* Waveform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8AF7562661EDB10003D212 /* Waveform.swift */; };
+		2C8AF75A2661EDB10003D212 /* WaveformLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8AF7572661EDB10003D212 /* WaveformLayer.swift */; };
 		2CA00EDA2656033D00EEC5CA /* WaveViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA00ED82656033D00EEC5CA /* WaveViewCell.swift */; };
 		2CA00EDB2656033D00EEC5CA /* WaveViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CA00ED92656033D00EEC5CA /* WaveViewCell.xib */; };
 		2CA00EEC2656052D00EEC5CA /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA00EE32656052D00EEC5CA /* UIDevice+Extension.swift */; };
@@ -71,8 +77,14 @@
 
 /* Begin PBXFileReference section */
 		2642FBD772ED4B4B23EB3BAE /* Pods_EditAudioTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EditAudioTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C068A4E2664CCAD0069F921 /* FragmentBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FragmentBuilder.swift; sourceTree = "<group>"; };
+		2C068A532664CD190069F921 /* NodeOutputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeOutputView.swift; sourceTree = "<group>"; };
+		2C068A582664D2FD0069F921 /* FloatPlot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatPlot.swift; sourceTree = "<group>"; };
 		2C494D752654B48F00199487 /* 123.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = 123.m4a; sourceTree = "<group>"; };
 		2C494D852654B71700199487 /* WaveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveViewController.swift; sourceTree = "<group>"; };
+		2C8AF74F2661ED5B0003D212 /* TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
+		2C8AF7562661EDB10003D212 /* Waveform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Waveform.swift; sourceTree = "<group>"; };
+		2C8AF7572661EDB10003D212 /* WaveformLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaveformLayer.swift; sourceTree = "<group>"; };
 		2CA00ED82656033D00EEC5CA /* WaveViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveViewCell.swift; sourceTree = "<group>"; };
 		2CA00ED92656033D00EEC5CA /* WaveViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WaveViewCell.xib; sourceTree = "<group>"; };
 		2CA00EE32656052D00EEC5CA /* UIDevice+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
@@ -167,6 +179,19 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		2C8AF7542661EDA50003D212 /* AudioKitUI */ = {
+			isa = PBXGroup;
+			children = (
+				2C068A582664D2FD0069F921 /* FloatPlot.swift */,
+				2C068A532664CD190069F921 /* NodeOutputView.swift */,
+				2C068A4E2664CCAD0069F921 /* FragmentBuilder.swift */,
+				2C8AF7562661EDB10003D212 /* Waveform.swift */,
+				2C8AF7572661EDB10003D212 /* WaveformLayer.swift */,
+				2C8AF74F2661ED5B0003D212 /* TableView.swift */,
+			);
+			path = AudioKitUI;
+			sourceTree = "<group>";
+		};
 		2CA00ED7265602FC00EEC5CA /* Record */ = {
 			isa = PBXGroup;
 			children = (
@@ -211,6 +236,23 @@
 			path = RecordHandler;
 			sourceTree = "<group>";
 		};
+		2CB7E9AC2660CAF300BAC2E3 /* Audiokit */ = {
+			isa = PBXGroup;
+			children = (
+				2C494D852654B71700199487 /* WaveViewController.swift */,
+			);
+			path = Audiokit;
+			sourceTree = "<group>";
+		};
+		2CB7E9AD2660CE6200BAC2E3 /* NativeRecord */ = {
+			isa = PBXGroup;
+			children = (
+				2CA00F19265658FE00EEC5CA /* EditRecorderViewController.swift */,
+				2CB8761026551D72005DB2DD /* NativeRecordController.swift */,
+			);
+			path = NativeRecord;
+			sourceTree = "<group>";
+		};
 		2CB8836C265E502400FAF79E /* DSWaveformImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -248,18 +290,18 @@
 		2CF2247B2653C13200B16EC1 /* EditAudio */ = {
 			isa = PBXGroup;
 			children = (
+				2C8AF7542661EDA50003D212 /* AudioKitUI */,
+				2CB7E9AD2660CE6200BAC2E3 /* NativeRecord */,
 				2CB8836C265E502400FAF79E /* DSWaveformImage */,
 				2CA00EFB2656306000EEC5CA /* RecordHandler */,
 				2CA00EE22656052D00EEC5CA /* Category */,
 				2CA00ED7265602FC00EEC5CA /* Record */,
+				2CB7E9AC2660CAF300BAC2E3 /* Audiokit */,
 				2C494D752654B48F00199487 /* 123.m4a */,
 				2CB7E99C265F8CF100BAC2E3 /* 背景.mp3 */,
 				2CB7E9A1265F8D3200BAC2E3 /* 歌曲.mp3 */,
 				2CF2247C2653C13200B16EC1 /* AppDelegate.swift */,
 				2CF224802653C13200B16EC1 /* ViewController.swift */,
-				2C494D852654B71700199487 /* WaveViewController.swift */,
-				2CB8761026551D72005DB2DD /* NativeRecordController.swift */,
-				2CA00F19265658FE00EEC5CA /* EditRecorderViewController.swift */,
 				2CF224822653C13200B16EC1 /* Main.storyboard */,
 				2CF224852653C13300B16EC1 /* Assets.xcassets */,
 				2CF224872653C13300B16EC1 /* LaunchScreen.storyboard */,
@@ -552,26 +594,32 @@
 			files = (
 				2CB88372265E502500FAF79E /* WaveformImageDrawer.swift in Sources */,
 				2CA00F1A265658FE00EEC5CA /* EditRecorderViewController.swift in Sources */,
+				2C8AF7592661EDB10003D212 /* Waveform.swift in Sources */,
 				2CF224812653C13200B16EC1 /* ViewController.swift in Sources */,
 				2CA00EFD2656306E00EEC5CA /* SeanFileManager.swift in Sources */,
 				2CA00F0D2656561800EEC5CA /* TimeCollectionViewCell.swift in Sources */,
 				2CA00F14265657B700EEC5CA /* WaveWithMeterCollectionViewCell.swift in Sources */,
 				2CA00EF02656052D00EEC5CA /* LayoutTool.swift in Sources */,
 				2CB88374265E502500FAF79E /* WaveformImageView.swift in Sources */,
+				2C8AF7502661ED5B0003D212 /* TableView.swift in Sources */,
 				2CA00EEC2656052D00EEC5CA /* UIDevice+Extension.swift in Sources */,
+				2C068A4F2664CCAD0069F921 /* FragmentBuilder.swift in Sources */,
 				2CB8761126551D72005DB2DD /* NativeRecordController.swift in Sources */,
 				2CF2247D2653C13200B16EC1 /* AppDelegate.swift in Sources */,
 				2CB88376265E502500FAF79E /* WaveformImageTypes.swift in Sources */,
 				2CA00EF12656052D00EEC5CA /* ViewController+SeanAdd.swift in Sources */,
 				2CA00EF42656052D00EEC5CA /* CellRegister.swift in Sources */,
 				2CA00EEE2656052D00EEC5CA /* UIImage+SeanAdd.swift in Sources */,
+				2C8AF75A2661EDB10003D212 /* WaveformLayer.swift in Sources */,
 				2CA00EF32656052D00EEC5CA /* LayoutMethod.swift in Sources */,
 				2CA00EF22656052D00EEC5CA /* UIView+SeanAdd.swift in Sources */,
 				2CB88373265E502500FAF79E /* TempiFFT.swift in Sources */,
 				2CA00F0526563D1700EEC5CA /* AudioPlayer.swift in Sources */,
 				2C494D862654B71700199487 /* WaveViewController.swift in Sources */,
 				2CA00EED2656052D00EEC5CA /* Array+SeanAdd.swift in Sources */,
+				2C068A542664CD190069F921 /* NodeOutputView.swift in Sources */,
 				2CA00EDA2656033D00EEC5CA /* WaveViewCell.swift in Sources */,
+				2C068A592664D2FE0069F921 /* FloatPlot.swift in Sources */,
 				2CA00EEF2656052D00EEC5CA /* String+SeanAdd.swift in Sources */,
 				2CA00F1F26565C4600EEC5CA /* AudioEditorManager.swift in Sources */,
 				2CB88375265E502500FAF79E /* WaveformAnalyzer.swift in Sources */,
@@ -758,7 +806,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 725J4L92JQ;
 				INFOPLIST_FILE = EditAudio/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -782,7 +830,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 725J4L92JQ;
 				INFOPLIST_FILE = EditAudio/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

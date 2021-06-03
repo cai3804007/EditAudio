@@ -10,12 +10,13 @@ import Foundation
 fileprivate let homeDir = NSHomeDirectory()
 fileprivate let documentDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
 fileprivate let cachetDir = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!
-
+fileprivate let temp = NSTemporaryDirectory()
 
 class SeanFileManager {
     enum FileType {
         case home
         case document
+        case temp
         case cache
         case audio
         case editAudio
@@ -32,6 +33,8 @@ class SeanFileManager {
             return documentDir
         case .cache:
             return cachetDir
+        case .temp:
+            return temp
         case .audio:
             let path = cachetDir + "/audio"
             if !fileExists(atPath: path) {
@@ -70,9 +73,11 @@ class SeanFileManager {
 
     
     static func fileUrl(fileName: String,_ type:FileType = .audio) -> URL? {
+//        let path = SeanFileManager.urlSting(type: type)
         
-        let url = URL(fileURLWithPath:SeanFileManager.urlSting(type: type) + "/\(fileName)")
-        return url
+        let url = URL(fileURLWithPath:SeanFileManager.urlSting(type: type))// + "/\(fileName)")
+        let name = url.appendingPathComponent(fileName)
+        return name
     }
     
     static func removeFile(fileName: String ,_ type:FileType = .audio) {
@@ -133,6 +138,19 @@ class SeanFileManager {
     }
     
     
+    static func getTempAudioWithAudiokit() -> String?{
+        
+        let audios = FileManager.default.subpaths(atPath: urlSting(type: .temp))
+        
+        return audios?.first
+    }
     
+    
+    
+    static func getBundlePath(name:String,type:String) -> String{
+      guard  let bundle = Bundle.main.path(forResource: name, ofType: type)
+      else {return ""}
+      return bundle
+    }
     
 }

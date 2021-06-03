@@ -10,6 +10,7 @@ import AVFoundation
 
 class ViewController: UITableViewController {
     let par = ParsingAudioHander.init()
+//    let aaa = ExtAudioFileMixer.init()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -22,7 +23,15 @@ class ViewController: UITableViewController {
             return
         }
         
-        par.synthetiAudio(withOutPath: path.path)
+        
+        
+        
+        let audio = SeanFileManager.getBundlePath(name: "歌曲", type: "mp3")
+        let bg = SeanFileManager.getBundlePath(name: "背景", type: "mp3")
+        
+//        par.mixAudio(audio, andAudio: bg, toFile: path.path, preferedSampleRate: 1.0)
+        
+        par.synthetiAudio(withAudioPath: audio, bgPath: bg, outPath: path.path, completion: nil)
         
     }
     
