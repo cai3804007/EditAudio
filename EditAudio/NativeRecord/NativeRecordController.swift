@@ -7,12 +7,12 @@
 
 import UIKit
 import AVFoundation
-
+enum CollectionType: Int, CaseIterable {
+    case decibel
+    case time
+}
 class NativeRecordController: UIViewController, AVAudioRecorderDelegate {
-    enum CollectionType: Int, CaseIterable {
-        case decibel
-        case time
-    }
+  
     var collectionTypes: [CollectionType] = CollectionType.allCases
     
     
@@ -252,7 +252,7 @@ extension NativeRecordController: UICollectionViewDataSource {
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // 取得した波形の数
+        // 取得波形数量
        return self.soundMeters.count
     }
     

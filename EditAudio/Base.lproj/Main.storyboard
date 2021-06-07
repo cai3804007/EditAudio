@@ -162,8 +162,29 @@
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Crg-60-wif">
                                 <rect key="frame" x="0.0" y="188" width="414" height="150"/>
+                                <subviews>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="FRW-b3-yE7">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
+                                        <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="5Ac-Aq-ttc">
+                                            <size key="itemSize" width="128" height="128"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="1LL-WA-qJN" id="5yL-II-aaR"/>
+                                            <outlet property="delegate" destination="1LL-WA-qJN" id="yo2-J3-wgP"/>
+                                        </connections>
+                                    </collectionView>
+                                </subviews>
                                 <color key="backgroundColor" systemColor="systemGray2Color"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="FRW-b3-yE7" secondAttribute="trailing" id="4Du-BJ-ga2"/>
+                                    <constraint firstItem="FRW-b3-yE7" firstAttribute="top" secondItem="Crg-60-wif" secondAttribute="top" id="GxS-ff-MtC"/>
+                                    <constraint firstItem="FRW-b3-yE7" firstAttribute="leading" secondItem="Crg-60-wif" secondAttribute="leading" id="avl-ri-ibz"/>
+                                    <constraint firstAttribute="bottom" secondItem="FRW-b3-yE7" secondAttribute="bottom" id="i9m-Ug-oWz"/>
                                     <constraint firstAttribute="height" constant="150" id="s7S-06-hau"/>
                                 </constraints>
                             </view>
@@ -218,6 +239,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="2XP-h8-Vif"/>
                     <connections>
+                        <outlet property="collectionview" destination="FRW-b3-yE7" id="33C-qa-wqw"/>
                         <outlet property="contentView" destination="Crg-60-wif" id="QRZ-Ud-thN"/>
                         <outlet property="playButton" destination="Pfx-ec-0uh" id="OXx-17-kRx"/>
                         <outlet property="recordButton" destination="j5f-VA-WJn" id="oT6-hE-eih"/>

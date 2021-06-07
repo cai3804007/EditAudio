@@ -21,18 +21,27 @@
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.SwiftErrorBreakpoint">
+         <BreakpointContent
+            uuid = "7EF74B66-C577-401E-BA82-8BAF3A367D45"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A9B78D9C-D965-4F12-8399-88B056604B4F"
+            uuid = "95FADFF7-8429-437C-A78D-0498B1F67892"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EditAudio/Audiokit/WaveViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
-            landmarkName = "configTable()"
+            startingLineNumber = "202"
+            endingLineNumber = "202"
+            landmarkName = "pauseRecord()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
